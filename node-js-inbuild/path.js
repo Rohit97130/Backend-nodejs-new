@@ -10,3 +10,4 @@ const extensionname = path.extname('C:\scaler course\LLD-4\node-js-inbuild\MyDir
 console.log(extensionname);
 
 
+
