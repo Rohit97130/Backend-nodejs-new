@@ -1,4 +1,5 @@
 
+const { log } = require('console');
 const fs= require('fs');
 
 
@@ -78,7 +79,7 @@ console.log('Directory Created');
 const fs= require('fs');
 // let ans = fs.existsSync('MyDirectory1')
 // let ans = fs.existsSync('1_fs.txt')
-let ans = fs.existsSync('MyDirectory1/1.js');
+// let ans = fs.existsSync('MyDirectory1/1.js');
 console.log(ans);
 
 
@@ -87,10 +88,45 @@ console.log(ans);
 
 
 
-//we will  do  an exercise
 
 
-//copy  a file from  srcFolder to destination folder
+
+
+
+
+
+
+
+
+
+
+//TODO we will  do  an exercise
+
+// ?copy  a file from  srcFolder to destination folder
+
+const fs = require('fs')
+const path = require('path');
+
+
+
+let srcFilepath = 'C:/scaler course/LLD-4/node-js-inbuild/1_fs.txt';
+let desDirectorypath = 'C:/scaler course/LLD-4/node-js-inbuild/MyDirectory1';
+
+let tobeCopied  = path.basename(srcFilepath)
+// console.log(extensionname);
+
+const despath = path.join(desDirectorypath,tobeCopied);
+console.log('this is a destination paht' + despath);
+
+
+
+fs.copyFileSync(srcFilepath , despath);
+
+// fs.unlinkSync(srcFilepath); this is cut paste funcationality
+
+
+
+
 
 
 
