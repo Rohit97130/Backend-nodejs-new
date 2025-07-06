@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 // console.log('your function ' , express);
 
@@ -10,7 +11,15 @@ const app = express();
 app.use(express.json());   //build in middleware
 
 
-//? Custom middleWare
+
+
+
+
+
+
+
+
+//! Custom middleWare
 
 function  middleWare1(req,res,next){
       console.log('This is middleware 1');
@@ -22,8 +31,24 @@ function  middleWare2(req,res,next){
     next()
 }
 
+function loggermiddleware(req,res,next){  //?instead of this you can also use morgan which is a third party middleware you  have to instal npm install morgan
+   console.log(req.method , req.hostname, req.ip, new Date());
+   next();
+}
+
 app.use(middleWare1);  //Whenever you  hit on  any  http method firstly  req need to pass through this middleware.
 app.use(middleWare2);
+// app.use(loggermiddleware); // third party middleware use morgan 
+
+app.use(morgan());
+
+
+
+
+
+
+
+
 //! learn  about nodemon:->  to  automatically restart the server. (npx nodemon server1.js  )
 
 //get Method
