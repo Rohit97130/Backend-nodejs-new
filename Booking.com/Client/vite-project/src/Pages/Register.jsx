@@ -1,8 +1,38 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import { Button, Form, Input, Radio } from "antd";
+import { useEffect } from "react";
+import {Link, useNavigate} from "react-router-dom";
+import { Button, Form, Input, message, Radio } from "antd";
+import '@ant-design/v5-patch-for-react-19'; 
+import RegisterUser from '../apicalls/users';
+
+
 
 function Register() {
+
+  const onSubmit = async(values)=>{
+      try{
+          const response = await RegisterUser(values);
+          console.log(response);
+          
+          if(response.success){
+             message.success(response.message);
+          }
+          else{
+             message.error(response.message);
+          }
+      }
+      catch(err){
+         console.log(err);   
+      }
+  }
+   
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+        navigate('/');
+    } 
+  }, []);
+
   return (
     <>
       <header className="App-header">
@@ -10,8 +40,10 @@ function Register() {
            <section className="left-section">
             <h1>Register to BookMyShow</h1>
            </section>
+
           <section className="right-section">
-            <Form layout="vertical">
+
+            <Form layout="vertical" onFinish={onSubmit}>
               <Form.Item 
             
               label="Name"
@@ -42,8 +74,9 @@ function Register() {
                 <Input  type="password"  id="password" placeholder="Enter your Password" />
               </Form.Item>
 
-              <Form.Item>
-                <Button block type="primary" style={{fontSize: '1rem', fontWeight:600}}>Submit</Button>
+              <Form.Item
+              >
+                <Button block type="primary" htmlType="submit" style={{fontSize: '1rem', fontWeight:600}}>Register</Button>
               </Form.Item>
             </Form>
         <div>

@@ -2,23 +2,23 @@
 import './App.css'
 
 import {BrowserRouter ,Routes , Route} from 'react-router-dom';
-import Home from './Pages/home';
+import Home from './Pages/Home';
 import Login from './Pages/Login';
-import Register from './Pages/register';
+import Register from './Pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 
 
   return (
     <>
-     <BrowserRouter>
+       <BrowserRouter>
         <Routes>
-           <Route  path='/' element = {<Home/>}/>
-           <Route path='/login' element = {<Login/>}/>
-           <Route path='/register' element={<Register/>}/>
-        </Routes>
+           <Route  path='/' element = {<ProtectedRoute><Home/></ProtectedRoute>}/>
+            <Route path='/login' element = {<Login/>}/>
+           <Route path='/register' element={<Register/>}/> 
+         </Routes>
      </BrowserRouter>
-       
     </>
    
   )

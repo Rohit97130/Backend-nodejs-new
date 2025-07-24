@@ -1,8 +1,36 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-import { Button, Form, Input, Radio } from "antd";
+import {Link,useNavigate} from "react-router-dom";
+import { Button, Form, Input, Radio,message } from "antd";
+import {LoginUser} from '../apicalls/users';
+import { useEffect } from 'react';
+
 
 function Login() {
+  const navigate = useNavigate();
+  const onSubmit = async (values)=>{
+
+    try {
+      const response = await LoginUser(values);
+      console.log(response);
+      
+      if (response.sucess) {
+        message.success(response.message);
+        localStorage.setItem('token',response.token);
+        navigate('/');
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+useEffect(() => {
+    if (localStorage.getItem("token")) {
+        navigate('/');
+    } 
+  }, []);
+
   return (
       <>
       <header className="App-header">
@@ -12,7 +40,7 @@ function Login() {
            </section>
 
           <section className="right-section">
-           <Form layout='vertical' >
+           <Form layout='vertical' onFinish={onSubmit} >
 
               <Form.Item 
               label="Email"
@@ -35,7 +63,7 @@ function Login() {
               </Form.Item>
 
               <Form.Item>
-                <Button block type="primary" style={{fontSize: '1rem', fontWeight:600}}>Submit</Button>
+                <Button block type="primary" htmlType="submit" style={{fontSize: '1rem', fontWeight:600}}>Login</Button>
               </Form.Item>
             </Form>
         <div>
@@ -47,7 +75,7 @@ function Login() {
        
       </header>
       </>
-  )
+  );
 }
 
 export default Login
