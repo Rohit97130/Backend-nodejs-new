@@ -80,7 +80,7 @@ function Register() {
               </Form.Item>
             </Form>
         <div>
-          <p>Already a user? <Link to="/login" > login now</Link> </p>
+          <p>Already a user? <Link to="/login"> login now</Link> </p>
         </div>
           </section>
 
