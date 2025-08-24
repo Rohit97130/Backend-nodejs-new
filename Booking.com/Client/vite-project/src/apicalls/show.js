@@ -13,11 +13,11 @@ export const addshow = async(payload)=>{
 
 export const updateshow = async(payload)=>{
     try{
-            const updatedshow = await axiosInstance('/api/shows/update-show',payload);
+            const updatedshow = await axiosInstance.put('/api/shows/update-show',payload);
             return updatedshow.data;
     }
     catch(err){
-        return {success:false,message:"Something wrong happen!"}
+        return {success:false,message:"Something wrong happen!!!!!"}
     }
 }
 
