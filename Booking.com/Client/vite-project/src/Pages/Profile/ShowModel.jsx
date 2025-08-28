@@ -119,7 +119,7 @@ function ShowModel({ isShowModalOpen, setIsShowModalOpen, selectedTheatre }) {
       dataIndex: "time",
       key: "time",
       render: (text, data) => {
-        return moment(text, "HH:mm").format("hh:mm:ss A");
+        return moment(text, "HH:mm").format("hh:mm A");
       },
     },
     {
@@ -273,6 +273,7 @@ function ShowModel({ isShowModalOpen, setIsShowModalOpen, selectedTheatre }) {
                       htmlFor="date"
                       name="date"
                       className="d-block"
+                       initialValue={moment().format("YYYY-MM-DD")}
                       rules={[
                         { required: true, message: "Show date is required!" },
                       ]}
@@ -297,8 +298,7 @@ function ShowModel({ isShowModalOpen, setIsShowModalOpen, selectedTheatre }) {
                       <Input
                         id="time"
                         type="time"
-                        step="1"
-                        placeholder="Enter the show time (HH:MM:SS)"
+                        placeholder="Enter the show time (HH:MM)"
                       ></Input>
                     </Form.Item>
                   </Col>

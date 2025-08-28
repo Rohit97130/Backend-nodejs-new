@@ -65,3 +65,17 @@ export const deletemovie = async(id)=>{
        return {success:false, message:"some error has been occured"};
     }
 } 
+
+
+
+
+//Get a Movie by Id
+export const getmovie = async(id)=>{  
+    try{
+            const response = await axiosInstance.get(`/api/movies/movie/${id}`);
+            return response.data;
+    }
+    catch(err){
+         return {success:false,message:"some error has been Occured!"};
+    }
+}

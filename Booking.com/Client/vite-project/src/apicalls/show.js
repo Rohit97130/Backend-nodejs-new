@@ -45,7 +45,7 @@ export const deleteShow  = async(payload)=>{
 
 export const getAllTheatresByMovie = async (payload) => {
     try{
-        const response = await axiosInstance.post('/api/shows/get-all-theatres-by-movie', payload);
+        const response = await axiosInstance.post('/api/shows/get-all-theatre-by-movie', payload);
         return response.data;
     }catch(err){
         return  {success:false,message:"Something wrong happen!"}
