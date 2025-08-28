@@ -9,8 +9,16 @@ require('./config/Db_conn.js');
 const app = express();
 
 const user_router = require('./routes/User_routes.js');
+const form_router = require('./routes/MoviesRoute.js');
+const Theatre_router = require('./routes/Theatre_Route.js');
+const show_router = require('./routes/show_routes.js');
 app.use(express.json());
 app.use('/api/users' , user_router);
+app.use('/api/movies' , form_router);
+app.use('/api/theatre' , Theatre_router);
+app.use('/api/shows',show_router);
+
+
 
 
 
